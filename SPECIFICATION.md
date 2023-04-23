@@ -60,7 +60,7 @@
 {
    "amount": 1000000,
    "duration": 6,
-   "rate": 8.5,
+   "rate": 8.5
 }
 ```
 
@@ -92,7 +92,7 @@
    "amount": 500000,
    "duration": 3,
    "rate": 20.3,
-   "isDifferentiated ": false
+   "isDifferentiated": false
 }
 ```
 

@@ -1,0 +1,39 @@
+// Invalid content-type
+POST http://localhost:5000/api/credit
+Content-Type: text/html
+
+{"test"}
+###
+
+// Invalid JSON request schema
+POST http://localhost:5000/api/credit
+Content-Type: application/json
+
+{
+   "duration": 6
+}
+###
+
+// Valid POST request to /api/credit
+POST http://localhost:5000/api/credit
+Content-Type: application/json
+
+{
+   "amount": 500000,
+   "duration": 3,
+   "rate": 20.3,
+   "isDifferentiated": false
+}
+###
+
+// Valid POST request to /api/credit with Diff percents
+POST http://localhost:5000/api/credit
+Content-Type: application/json
+
+{
+   "amount": 500000,
+   "duration": 3,
+   "rate": 20.3,
+   "isDifferentiated": true
+}
+###

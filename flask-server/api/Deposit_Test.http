@@ -1,0 +1,27 @@
+// Invalid content-type
+POST http://localhost:5000/api/deposit
+Content-Type: text/html
+
+{"test"}
+###
+
+// Invalid JSON request schema
+POST http://localhost:5000/api/deposit
+Content-Type: application/json
+
+{
+   "amount": 1000000.235,
+   "duration": 6
+}
+###
+
+// Valid POST request to /api/deposit
+POST http://localhost:5000/api/deposit
+Content-Type: application/json
+
+{
+   "amount": 1000000,
+   "duration": 6,
+   "rate": 8.5
+}
+###

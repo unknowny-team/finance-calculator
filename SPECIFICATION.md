@@ -77,6 +77,7 @@
 
 ```javascript
 {
+   "code": 400,
    "error": "bad input"
 }
 ```
@@ -109,6 +110,7 @@
 
 ```javascript
 {
-   "error": "bad input"
+   "code": 500,
+   "error": "server error"
 }
 ```

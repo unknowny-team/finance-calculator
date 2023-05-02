@@ -6,17 +6,30 @@ function ReturnOfInvestmentCalc() {
     const sendFormInfoAsJSON = (e) => {
         e.preventDefault();
 
-        // amount целый
-        // duration целый
-        // rate дробный
-        // ВСЕ ПОЛОЖИТЕЛЬНЫЕ
+        // TO-DISCUSS
+        // Нет таких типов данных (int)
+        // Выходные из спецификации не совпадают с реальностью
 
-        if (parseInt(calcState.amount) > 0 || parseInt(calcState.duration) > 0 || parseFloat(calcState.rate) > 0) {
-            console.log('Error parsing!');
+        if (isNaN(calcState.amount) || isNaN(calcState.duration) || isNaN(calcState.rate)) {
+            console.log('Error parsing calculator state (NaN)!');
             return -1;
         }
-
-        console.log(JSON.stringify(calcState));
+        else if (calcState.amount < 0 || calcState.duration < 0 || calcState.rate < 0) {
+            console.log('Error parsing calculator state (Less than zero)!');
+            return -1;
+        }
+        else {
+            console.log(JSON.stringify(calcState));
+            fetch('http://127.0.0.1:5000/api/deposit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                mode: 'cors',
+                body: JSON.stringify(calcState)
+            })
+            .then(res => res.json())
+            .then(ans => console.log(`<Deposit>\nFull amount: ${ans.fullAmount} \nPercentages: ${ans.percentages}`))
+            .catch(err => console.log(err));
+        }
     }
 
     return (
@@ -37,15 +50,15 @@ function ReturnOfInvestmentCalc() {
                     </div>
                     <div className="calculator__right">
                         <div className="calculator__row">
-                            <input type="text" name="amount" className="calculator__input amount-input" onChange={e => setCalcState({...calcState, amount: e.target.value})}/>
+                            <input type="text" name="amount" className="calculator__input amount-input" onChange={e => setCalcState({...calcState, amount: parseInt(e.target.value)})} autoComplete="off"/>
                             <p className="calculator__post-input">₽</p>
                         </div>
                         <div className="calculator__row">
-                            <input type="text" name="duration" className="calculator__input duration-input" onChange={e => setCalcState({...calcState, duration: e.target.value})}/>
+                            <input type="text" name="duration" className="calculator__input duration-input" onChange={e => setCalcState({...calcState, duration: parseInt(e.target.value)})} autoComplete="off"/>
                             <p className="calculator__post-input">мес.</p>
                         </div>
                         <div className="calculator__row">
-                            <input type="text" name="rate" className="calculator__input rate-input" onChange={e => setCalcState({...calcState, rate: e.target.value})}/>
+                            <input type="text" name="rate" className="calculator__input rate-input" onChange={e => setCalcState({...calcState, rate: parseFloat(e.target.value)})} autoComplete="off"/>
                             <p className="calculator__post-input">%</p>
                         </div>
                     </div>

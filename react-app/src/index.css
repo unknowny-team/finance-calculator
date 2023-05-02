@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Nunito', sans-serif;
+
+    color: #F1F1F3;
+    background-color: #050706;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow-y: hidden;
+}
+
+/* Upper menu */
+
+.calculator-selectors {
+    display: flex;
+    margin: 40px 0;
+}
+
+.calculator-type {
+    margin: 0 20px;
+    padding: 10px;
+
+    font-size: 20px;
+    text-transform: uppercase;
+
+    background-color: #39393C;
+    border: 2px solid #39393C;
+    border-radius: 15px;
+
+    transition-property: color, background-color, border;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+
+    cursor: pointer;
+}
+
+.calculator-type:hover {
+    color: #3476FE;
+    background-color: transparent;
+    border: 2px solid #3476FE;
+}
+
+.calculator-selector__calc-type {
+    display: none;
+}
+
+/* Calculator */
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 35px;
+
+    font-size: 20px;
+
+    background-color: #18181A;
+    border-radius: 15px;
+}
+
+.calculator__header {
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.calculator__separator {
+    margin: 18px 0;
+    width: 75%;
+}
+
+.calculator__body {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 15px;
+
+    background-color: #2A2A2C;
+    border-radius: 15px;
+}
+
+.calculator__left {
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator__right {
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator__row {
+    display: flex;
+    margin: 5px;
+}
+
+.calculator__input {
+    margin-right: 3px;
+
+    font-weight: 300;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+
+    color: #F1F1F3;
+    background-color: #39393C;
+    border-color: #39393C;
+}
+
+.amount-input {
+    width: 170px;
+}
+
+.duration-input {
+    width: 40px;
+}
+
+.rate-input {
+    width: 55px;
+}
+
+.calculator__submit-button {
+    padding: 10px 25px;
+
+    font-weight: 400;
+    font-size: 15px;
+    font-family: 'Nunito', sans-serif;
+    text-transform: uppercase;
+
+    color: #F1F1F3;
+    background-color: #39393C;
+    border: 2px solid #39393C;
+    border-radius: 5px;
+
+    transition-property: color, background-color, border;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+}
+
+.calculator__submit-button:hover {
+    color: #3476FE;
+    background-color: transparent;
+    border: 2px solid #3476FE;
+
+    cursor: pointer;
+}
+
+@media (min-widdth: 320px) {
+    .container {
+        justify-content: space-evenly;
+    }
+
+    .calculator-selectors {
+        flex-direction: column;
+        margin: 10px 0;
+    }
+    
+    .calculator-type {
+        margin: 5px;
+        padding: 5px;
+    
+        font-size: 15px;
+    }
+
+    /* Calculator */
+
+    .calculator {
+        justify-content: center;
+        align-items: center;
+
+        padding: 10px 0;
+
+        font-size: 15px;
+
+        border-radius: 0;
+    }
+
+    .calculator__header {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .calculator__separator {
+        margin: 5px 0;
+    }
+
+    .calculator__body {
+        width: 95%;
+    }
+
+    .calculator__left {
+        width: 157px;
+    }
+
+    .calculator__row {
+        display: flex;
+        margin: 5px 0;
+    }
+
+    .calculator__input {
+        margin: -2px 5px;
+
+        font-size: 15px;
+    }
+
+    .amount-input {
+        width: 115px;
+    }
+
+    .duration-input {
+        width: 35px;
+    }
+
+    .rate-input {
+        width: 45px;
+    }
+
+    .calculator__submit-button {
+        margin: 10px 0;
+
+        font-size: 14px;
+    }
+}
+
+@media (min-widdth: 480px) {
+
+}

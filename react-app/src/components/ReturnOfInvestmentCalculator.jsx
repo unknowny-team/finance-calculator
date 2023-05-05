@@ -36,10 +36,6 @@ function ReturnOfInvestmentCalculator({setError, setAnswer}) {
         e.preventDefault();
         setError(''); // In case error with server previously was encountered
 
-        // TO-DISCUSS
-        // Нет таких типов данных (int)
-        // Выходные из спецификации не совпадают с реальностью
-
         fetch('http://127.0.0.1:5000/api/deposit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

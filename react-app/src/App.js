@@ -1,21 +1,26 @@
 import { useState } from "react";
 import CalculatorSelector from "./components/CalculatorSelector";
-import ReturnOfInvestmentCalc from "./components/ReturnOfInvestmentCalculator";
-
+import ReturnOfInvestmentCalculator from "./components/ReturnOfInvestmentCalculator";
+import MonthlyPaymentCalculator from "./components/MonthlyPaymentCalculator";
+import CalcError from "./components/CalcError";
 import Answer from "./components/Answer";
 
 function App() {
-  const [isReturnOfInvestmentCalc, setIsReturnOfInvestmentCalc] = useState(true); // Калькулятор доходности вклада или нет
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [isReturnOfInvestmentCalc, setIsReturnOfInvestmentCalc] = useState(true);
+
+  const [error, setError] = useState('');
+  const [answer, setAnswer] = useState({});
 
   return (
     <div className="App">
       <CalculatorSelector setIsReturnOfInvestmentCalc={setIsReturnOfInvestmentCalc}/>
       {
         isReturnOfInvestmentCalc
-          ? <ReturnOfInvestmentCalc />
-          : <p>Калькулятор ежемесячных платежей по кредиту</p>
+          ? <ReturnOfInvestmentCalculator setError={setError} setAnswer={setAnswer}/>
+          : <MonthlyPaymentCalculator setError={setError} setAnswer={setAnswer} />
       }
+      <CalcError text={error}/>
+      <Answer body={answer}/>
     </div>
   );
 }

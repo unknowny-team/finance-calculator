@@ -7,6 +7,8 @@
     padding: 0;
 
     box-sizing: border-box;
+
+    outline: none;
 }
 
 body {
@@ -25,7 +27,7 @@ body {
     align-items: center;
 
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 
     overflow-y: hidden;
 }
@@ -65,9 +67,9 @@ body {
     display: none;
 }
 
-/* Calculator */
+/* This style is used for calculator and answer blocks */
 
-.calculator {
+.app-block {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,11 +83,15 @@ body {
     border-radius: 15px;
 }
 
-.calculator__header {
+/* This header style is used in calculator and answer blocks */
+
+.app-block__header {
     font-size: 30px;
     font-weight: 700;
     text-transform: uppercase;
 }
+
+/* Calculator */
 
 .calculator__separator {
     margin: 18px 0;
@@ -94,7 +100,7 @@ body {
 
 .calculator__body {
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     justify-content: space-evenly;
     padding: 15px;
 
@@ -127,6 +133,10 @@ body {
     color: #F1F1F3;
     background-color: #39393C;
     border-color: #39393C;
+}
+
+.annuitet-type {
+    margin-right: 10px;
 }
 
 .amount-input {
@@ -165,6 +175,39 @@ body {
     border: 2px solid #3476FE;
 
     cursor: pointer;
+}
+
+/* Error */
+
+.error {
+    display: flex;
+    align-items: center;
+    margin: 15px;
+    padding: 10px;
+
+    color: rgb(250, 50, 50);
+    border: 2px solid rgb(250, 50, 50);
+    border-radius: 15px;
+}
+
+.error__image {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+}
+
+.error__text {
+    font-size: 20px;
+}
+
+/* Answer */
+
+.answer {
+    margin: 15px;
+}
+
+.answer__text {
+    margin: 15px 0;
 }
 
 @media (min-widdth: 320px) {

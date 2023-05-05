@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-function ReturnOfInvestmentCalculator({setError, setAnswer}) {
+function MonthlyPaymentCalculator({setError, setAnswer}) {
     const [calcState, setCalcState] = useState({
         amount: 1, 
         duration: 1, 
         rate: 1.0,
+        isDifferentiated: false,
         isValidAmount: true,
         isValidDuration: true,
         isValidRate: true
@@ -36,11 +37,7 @@ function ReturnOfInvestmentCalculator({setError, setAnswer}) {
         e.preventDefault();
         setError(''); // In case error with server previously was encountered
 
-        // TO-DISCUSS
-        // Нет таких типов данных (int)
-        // Выходные из спецификации не совпадают с реальностью
-
-        fetch('http://127.0.0.1:5000/api/deposit', {
+        fetch('http://127.0.0.1:5000/api/credit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 mode: 'cors',
@@ -64,18 +61,18 @@ function ReturnOfInvestmentCalculator({setError, setAnswer}) {
 
     return (
         <form className="calculator app-block">
-            <h3 className="app-block__header">Калькулятор доходности вклада</h3>
+            <h3 className="app-block__header">Калькулятор ежемесячных платежей по кредиту</h3>
             <hr className="calculator__separator" />
             <div className="calculator__body">
                     <div className="calculator__left">
                         <div className="calculator__row">
-                            <label htmlFor="amount" className="calculator__label">Сумма вклада: </label>
+                            <label htmlFor="amount" className="calculator__label">Сумма кредита: </label>
                         </div>
                         <div className="calculator__row">
-                            <label htmlFor="duration" className="calculator__label">Срок размещения: </label>
+                            <label htmlFor="duration" className="calculator__label">Срок кредита: </label>
                         </div>
                         <div className="calculator__row">
-                            <label htmlFor="rate" className="calculator__label">Процентная ставка: </label>
+                            <label htmlFor="rate" className="calculator__label">Тип платежей: </label>
                         </div>
                     </div>
                     <div className="calculator__right">
@@ -88,15 +85,17 @@ function ReturnOfInvestmentCalculator({setError, setAnswer}) {
                             <p className="calculator__post-input">мес.</p>
                         </div>
                         <div className="calculator__row">
-                            <input type="text" name="rate" className="calculator__input rate-input" style={calcState.isValidRate ? {} : invalidInputStyle} placeholder="1.0" onChange={e => setCalcState({...calcState, rate: parseFloat(e.target.value), isValidRate: checkValidNumber(e.target.value)})} autoComplete="off"/>
-                            <p className="calculator__post-input">%</p>
+                            <input type="radio" name="fee-type" className="calculator__input radio-input" onChange={e => setCalcState({...calcState, isDifferentiated: !e.target.checked})} defaultChecked/>
+                            <p className="calculator__post-input annuitet-type">Аннуитетные</p>
+                            <input type="radio" name="fee-type" className="calculator__input radio-input" onChange={e => setCalcState({...calcState, isDifferentiated: e.target.checked})}/>
+                            <p className="calculator__post-input">Дифференцированные</p>
                         </div>
                     </div>
             </div>
             <hr className="calculator__separator" />
-            <input type="submit" value="Рассчитать" className="calculator__submit-button" style={(calcState.isValidAmount && calcState.isValidDuration && calcState.isValidRate) ? {} : disabledButtonStyle} onClick={sendCalcInfoAsJSON} disabled={!calcState.isValidAmount || !calcState.isValidDuration || !calcState.isValidRate}/>
+            <input type="submit" value="Рассчитать" className="calculator__submit-button" style={(calcState.isValidAmount && calcState.isValidDuration && calcState.isValidRate) ? {} : disabledButtonStyle} onClick={sendCalcInfoAsJSON} disabled={!calcState.isValidAmount || !calcState.isValidDuration || !calcState.isValidRate} />
         </form>
     );
 }
 
-export default ReturnOfInvestmentCalculator;
+export default MonthlyPaymentCalculator;
